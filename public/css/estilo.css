@@ -1,0 +1,1010 @@
+/* ============================================
+   SUPER BAXAL BOXING - Estilo Principal
+   Diseño inspirado en UFC: tema oscuro, bold, rojo
+   ============================================ */
+
+/* RESET & BASE */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --negro: #0a0a0a;
+    --negro-claro: #1a1a1a;
+    --gris-oscuro: #2a2a2a;
+    --gris: #888;
+    --blanco: #f5f5f5;
+    --rojo: #d4000d;
+    --rojo-oscuro: #a00008;
+    --dorado: #c9a84c;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--negro);
+    color: var(--blanco);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* ============ NAVBAR ============ */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 2px solid var(--rojo);
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    padding: 5px 30px;
+    background: rgba(10, 10, 10, 0.98);
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.logo-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--blanco);
+    letter-spacing: 2px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 5px;
+}
+
+.nav-menu li a {
+    color: var(--blanco);
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--rojo);
+    transition: width 0.3s ease;
+}
+
+.nav-menu li a:hover::after {
+    width: 80%;
+}
+
+.nav-menu li a:hover {
+    color: var(--rojo);
+}
+
+/* Hamburger */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background: var(--blanco);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ============ HERO ============ */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('../Imagenes/imagen3.jpeg') center center / cover no-repeat;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 10, 0.7) 0%,
+        rgba(10, 10, 10, 0.5) 50%,
+        rgba(10, 10, 10, 0.9) 100%
+    );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    animation: fadeInUp 1s ease;
+}
+
+.hero-logo {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 30px rgba(212, 0, 13, 0.5));
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.hero-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 20px rgba(0,0,0,0.8);
+}
+
+.text-red {
+    color: var(--rojo);
+}
+
+.hero-subtitle {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-bottom: 40px;
+}
+
+.btn-hero {
+    display: inline-block;
+    padding: 15px 50px;
+    background: var(--rojo);
+    color: var(--blanco);
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border: 2px solid var(--rojo);
+    transition: all 0.3s ease;
+    clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+}
+
+.btn-hero:hover {
+    background: transparent;
+    color: var(--rojo);
+}
+
+/* ============ SECTIONS ============ */
+.section {
+    padding: 100px 60px;
+    position: relative;
+}
+
+.section-dark {
+    background: var(--negro-claro);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.title-line {
+    width: 80px;
+    height: 4px;
+    background: var(--rojo);
+    margin: 15px auto 0;
+}
+
+.section-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ============ DESCRIPCION ============ */
+.descripcion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.descripcion-text p {
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+    color: #ccc;
+    line-height: 1.8;
+}
+
+.significado {
+    background: var(--gris-oscuro);
+    padding: 15px 20px;
+    border-left: 4px solid var(--rojo);
+    border-radius: 0 8px 8px 0;
+}
+
+.valores-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.valores-card {
+    background: var(--gris-oscuro);
+    padding: 25px;
+    border-radius: 8px;
+    border-top: 3px solid var(--rojo);
+    transition: transform 0.3s ease;
+}
+
+.valores-card:hover {
+    transform: translateY(-5px);
+}
+
+.valores-card h4 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--rojo);
+    letter-spacing: 1px;
+}
+
+.valores-card ul {
+    list-style: none;
+}
+
+.valores-card ul li {
+    padding: 5px 0;
+    padding-left: 20px;
+    position: relative;
+    color: #ccc;
+}
+
+.valores-card ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    background: var(--rojo);
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.estilo-vida {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.4rem;
+    text-align: center;
+    margin-top: 30px;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.img-descripcion {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(212, 0, 13, 0.2);
+    transition: transform 0.5s ease;
+}
+
+.img-descripcion:hover {
+    transform: scale(1.02);
+}
+
+/* ============ HORARIOS ============ */
+.horarios-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.horario-card {
+    background: var(--gris-oscuro);
+    padding: 40px 25px;
+    text-align: center;
+    border-radius: 10px;
+    border-bottom: 4px solid var(--rojo);
+    transition: all 0.3s ease;
+}
+
+.horario-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(212, 0, 13, 0.15);
+}
+
+.horario-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.horario-card h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.horario-card p {
+    color: #aaa;
+    font-size: 1rem;
+}
+
+/* ============ FORMAS DE TRABAJO ============ */
+.trabajo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.trabajo-card {
+    background: var(--negro-claro);
+    padding: 35px 25px;
+    border-radius: 10px;
+    border: 1px solid var(--gris-oscuro);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.trabajo-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--rojo), transparent);
+}
+
+.trabajo-card:hover {
+    border-color: var(--rojo);
+    transform: translateY(-5px);
+}
+
+.trabajo-numero {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--rojo);
+    opacity: 0.3;
+    margin-bottom: 10px;
+}
+
+.trabajo-card h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.trabajo-card p {
+    color: #aaa;
+    font-size: 0.95rem;
+}
+
+.img-trabajo {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+/* ============ PRECIOS ============ */
+.precios-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.precio-card {
+    background: var(--gris-oscuro);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.precio-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--rojo);
+}
+
+.precio-destacado {
+    border: 2px solid var(--rojo);
+    transform: scale(1.05);
+}
+
+.precio-destacado:hover {
+    transform: scale(1.05) translateY(-10px);
+}
+
+.precio-tag {
+    background: var(--rojo);
+    padding: 20px;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.precio-info {
+    padding: 30px 25px;
+    text-align: center;
+}
+
+.precio-info p {
+    color: #aaa;
+    margin-bottom: 25px;
+    font-size: 1rem;
+}
+
+.btn-precio {
+    display: inline-block;
+    padding: 12px 30px;
+    background: transparent;
+    color: var(--rojo);
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 2px solid var(--rojo);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.btn-precio:hover {
+    background: var(--rojo);
+    color: var(--blanco);
+}
+
+.precios-cta {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.precios-nota {
+    text-align: center;
+    color: var(--gris);
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+}
+
+.btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 40px;
+    background: #25d366;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover {
+    background: #1ebd5a;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-icon {
+    font-size: 1.4rem;
+}
+
+/* ============ METODOS DE PAGO ============ */
+.pago-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.pago-card {
+    background: var(--negro-claro);
+    padding: 50px 30px;
+    text-align: center;
+    border-radius: 12px;
+    border: 1px solid var(--gris-oscuro);
+    transition: all 0.3s ease;
+}
+
+.pago-card:hover {
+    border-color: var(--rojo);
+    transform: translateY(-5px);
+}
+
+.pago-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.pago-card h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.pago-card p {
+    color: #aaa;
+    font-size: 0.95rem;
+}
+
+/* ============ COLABORACIONES ============ */
+.colab-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+.colab-card {
+    background: var(--gris-oscuro);
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.colab-card:hover {
+    border-bottom-color: var(--rojo);
+    transform: translateY(-5px);
+}
+
+.colab-card h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: var(--blanco);
+}
+
+.colab-card p {
+    color: var(--gris);
+    font-size: 0.85rem;
+}
+
+/* ============ PATROCINADOR ============ */
+.patrocinador-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.patrocinador-nombre {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--dorado);
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+}
+
+.patrocinador-texto p {
+    color: #ccc;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.patrocinador-lista {
+    list-style: none;
+    padding: 0;
+}
+
+.patrocinador-lista li {
+    padding: 12px 0 12px 30px;
+    position: relative;
+    font-size: 1.1rem;
+    color: #ccc;
+    border-bottom: 1px solid var(--gris-oscuro);
+}
+
+.patrocinador-lista li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: var(--dorado);
+    border-radius: 50%;
+}
+
+.img-patrocinador {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(201, 168, 76, 0.15);
+}
+
+/* ============ EVENTOS / CARRUSEL ============ */
+.carousel-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.carousel-slide {
+    min-width: 100%;
+    position: relative;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(212, 0, 13, 0.8);
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s ease;
+}
+
+.carousel-btn:hover {
+    background: var(--rojo);
+}
+
+.carousel-prev {
+    left: 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.carousel-next {
+    right: 0;
+    border-radius: 8px 0 0 8px;
+}
+
+.carousel-dots {
+    text-align: center;
+    padding: 15px 0;
+    background: var(--gris-oscuro);
+}
+
+.carousel-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    background: var(--gris);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-dot.active {
+    background: var(--rojo);
+    transform: scale(1.3);
+}
+
+/* ============ FOOTER ============ */
+.footer {
+    background: var(--negro);
+    border-top: 3px solid var(--rojo);
+    padding: 40px 60px 20px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.footer-logo-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.footer-logo span {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.footer-info p {
+    color: var(--gris);
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.footer-bottom {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--gris-oscuro);
+}
+
+.footer-bottom p {
+    color: var(--gris);
+    font-size: 0.8rem;
+}
+
+/* ============ ANIMACIONES ============ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 20px rgba(212, 0, 13, 0.4));
+    }
+    50% {
+        filter: drop-shadow(0 0 40px rgba(212, 0, 13, 0.7));
+    }
+}
+
+/* Animaciones al hacer scroll */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--negro);
+        flex-direction: column;
+        padding: 80px 30px 30px;
+        gap: 5px;
+        transition: right 0.4s ease;
+        border-left: 2px solid var(--rojo);
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .section {
+        padding: 80px 30px;
+    }
+
+    .descripcion-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .horarios-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .trabajo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .precios-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .precio-destacado {
+        transform: none;
+    }
+
+    .precio-destacado:hover {
+        transform: translateY(-10px);
+    }
+
+    .pago-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .colab-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .patrocinador-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+        letter-spacing: 4px;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        letter-spacing: 3px;
+    }
+
+    .hero-logo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        letter-spacing: 3px;
+    }
+
+    .section {
+        padding: 60px 20px;
+    }
+
+    .horarios-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .trabajo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .precios-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .colab-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .carousel-slide img {
+        height: 350px;
+    }
+
+    .valores-container {
+        grid-template-columns: 1fr;
+    }
+
+    .footer {
+        padding: 30px 20px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .logo-text {
+        font-size: 0.9rem;
+    }
+
+    .colab-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .carousel-slide img {
+        height: 250px;
+    }
+}
